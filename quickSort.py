@@ -1,18 +1,20 @@
-def quick_sort(arr,low,high):
+def quick_sort(arr,low,high, draw_func):
     if low<high:
-        pivot = Partition(arr,low,high)
-        quick_sort(arr,low,pivot-1)
-        quick_sort(arr,pivot+1,high)
+        pivot = Partition(arr,low,high,draw_func)
+        quick_sort(arr,low,pivot-1,draw_func)
+        quick_sort(arr,pivot+1,high,draw_func)
     
 
-def Partition(arr,low,high):    
+def Partition(arr,low,high,draw_func):    
     pivot = arr[high]
     i = low-1
     for j in range(low, high):
         if arr[j]<=pivot:
             i+=1
             arr[i],arr[j]=arr[j],arr[i]
+            draw_func()
     arr[i+1],arr[high] = arr[high],arr[i+1]
+    draw_func() #kich hoat ve
     return i+1 #vi tri chot
 
 

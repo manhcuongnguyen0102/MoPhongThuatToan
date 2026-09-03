@@ -1,4 +1,4 @@
-def merge(arr, left, mid, right):
+def merge(arr, left, mid, right,draw_func):
     left_arr = arr[left:mid+1]
     right_arr = arr[mid+1:right+1]
     i=j=0
@@ -11,20 +11,23 @@ def merge(arr, left, mid, right):
             arr[k] = right_arr[j]
             j+=1
         k+=1
+        draw_func()
     while i < len(left_arr):
         arr[k] = left_arr[i]
         i+=1
         k+=1
+        draw_func()
     while j < len(right_arr):
         arr[k] = right_arr[j]
         j+=1
         k+=1
-def merge_sort(arr,left,right):
+        draw_func()
+def merge_sort(arr,left,right,draw_func):
     if left<right:
         mid = (left+right)//2
-        merge_sort(arr,left,mid)
-        merge_sort(arr,mid+1,right)
-        merge(arr,left,mid,right)
+        merge_sort(arr,left,mid,draw_func)
+        merge_sort(arr,mid+1,right,draw_func)
+        merge(arr,left,mid,right,draw_func)
     else:
         return None
         
